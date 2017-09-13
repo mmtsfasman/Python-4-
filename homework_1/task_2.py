@@ -1,16 +1,19 @@
-import random.choice
+import random
 
 class drink:
 
-    def __init__(self, name, type_of_milk, temperature, size):
+    def __init__(self, name, temperature, size_ml, state, type_of_milk):
         self.name = name
+        temperature = int
+        size_ml = int
+        state = ''
+        type_og_milk = ''
+        
 
         
 
 class water(drink):
-
-    def def __init__(self, temperature, size, state):
-        self.name = name
+    def __init__(self):
         self.temperature = 40
         self.size_ml = 150
         self.state = 'liquid'
@@ -22,9 +25,7 @@ class water(drink):
     
 
 class coffee(drink):
-
-    def __init__(self, name, temperature, size_ml):
-        self.name = name
+    def __init__(self):
         self.temperature = 80
         self.size_ml = 50
 
@@ -32,9 +33,7 @@ class coffee(drink):
     
 
 class milk(drink):
-
-    def __init__(self, name, type_of_milk, temperature, size_ml, state):
-        self.name = name
+    def __init__(self):
         self.type_of_milk = 'cow'
         self.temperature = 32
         self.size_ml = 200
@@ -57,88 +56,72 @@ class milk(drink):
         self.state = 'frothy'
         
 class vietnamese(coffee):
-
-    def __init__(self, name):
-        self.name = name
-    add_1 = milk.condenced()
-    add_2 = water.frozen()
-    self.temperature = (self.temperature + add_1.temperature + add_2.temperature)/3
-    self.size_ml += (add_1.size_ml + addd_2.size_ml)    
+    def make_it(self):
+        add_1 = milk()
+        add_1.condenced()
+        add_2 = water()
+        add_2.frozen()
+        self.temperature = (self.temperature + add_1.temperature + add_2.temperature)/3
+        self.size_ml += (add_1.size_ml + addd_2.size_ml)    
     
     
 
 class latte(coffee):
-    def __init__(self, name):
-        self.name = name
-    add = milk.for_latte() 
-    self.temperature = 0.5*(self.temperature + add.temperature)
-    self.size_ml += add.size_ml
+     def make_it(self):
+        add = milk.for_latte() 
+        self.temperature = 0.5*(self.temperature + add.temperature)
+        self.size_ml += add.size_ml
 
     
 class espresso(coffee):
-
-    def __init__(self, name):
-        self.name = name
+    
+    pass
+    
     
 
 class americano(coffee):
-
-    def __init__(self, name):
-        self.name = name
-    add = water()
-    self.temperature = 0.5*(self.temperature + add.temperature)
-    self.size_ml += add.size_ml
+     def make_it(self):
+        add = water()
+        self.temperature = 0.5*(self.temperature + add.temperature)
+        self.size_ml += add.size_ml
     
  
-class barista():
-
-    def __init__(self, name):
-        self.name = name
+class barista:
 
     def help_in_ordering(self):
         #использую полиморфизм, можно было бы ещё с типами молока доработать, но я устала, если нужно для полный картины - доработаю))
         print(random.choice(['How are you doing?', 'What a lovely weather we\'re having!']))
-        drink = raw_input('What would you like to drink? (type water, coffee or milk)')
+        drink = input('What would you like to drink? (type water, coffee or milk)')
         
         if drink == 'coffee':
-            if raw_input('With milk? (type yes or no)') = 'yes':
-                if raw_input('Condenced? (type yes or no)') = 'yes':
-                    drink_ordered = vietnamese()
+            if input('With milk? (type yes or no)') == 'yes':
+                if input('Condenced? (type yes or no)') == 'yes':
+                    self.drink_ordered = vietnamese()
                 else:
-                    drink_ordered = latte()
+                    self.drink_ordered = latte()
             else:
-                drink = raw_input('Espresso or Americano? (type espresso or americano)')    
+                drink = input('Espresso or Americano? (type espresso or americano)')    
                 if drink ==  'expresso':
                     print('Go away')
                     
                 if drink == 'espresso':
-                    drink_ordered = espresso()
+                    self.drink_ordered = espresso()
 
                 if drink == 'americano':
-                     drink_ordered = americano()
+                    self.drink_ordered = americano()
 
         elif drink == 'milk':
-            drink_ordered = milk()
+            self.drink_ordered = milk()
 
         elif drink == 'water':
-            drink_ordered = water()
+            self.drink_ordered = water()
 
         else:
-            drink_ordered = None
+            self.drink_ordered = None
 
-        return drink_ordered
-
-
-        
-            
-
-
-        
-                    
+        return self.drink_ordered
     
-        
-        
-
-
-    
-    
+a = barista()
+drink_you_wanted = a.help_in_ordering()
+if drink_you_wanted != None:
+    print(drink_you_wanted.temperature) #вместо температуры можно набрать любой другой, просто чтобы проверить объект атрибут
