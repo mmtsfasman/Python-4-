@@ -82,6 +82,9 @@ class Experiment:
         a_statistics = TextStatistics(article)
         print('топ-5 3-грамм по самой статье \r\n' + a_statistics.get_top_3grams(5))
         print('топ-5 слов по самой статье \r\n' + a_statistics.get_top_words(5))
+
+        
+a = Experiment()
         
     
 
