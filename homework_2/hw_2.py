@@ -10,11 +10,11 @@ class WikiParser:
 
     def get_articles(self, start):
 
-        article = Wikipedia().article(title=start)
+        article = Wikipedia().article(start)
         links = article.links
         list_of_strings = []
         for l in links:
-            l_art = Wikipedia().article(title=l)
+            l_art = Wikipedia().article(l)
             l_text =  re.sub(' +', ' ', plaintext(l_art.source), flags = re.DOTALL)
             l_text = re.sub('[.;:!?\'\"-\(\)1234567890@,]+', '', l_text, flags = re.DOTALL).lower()
             list_of_strings.append(l_text.split())
@@ -25,7 +25,7 @@ class WikiParser:
 
 
 class TextStatistics:
-     def __init___(self, articles):
+     def __init__(self, self.articles):
             pass
     
      def get_top_3grams(self, n):
@@ -33,8 +33,8 @@ class TextStatistics:
             list_of_3grams_in_descending_order_by_freq = []
             list_of_their_corresponding_freq = []
             for art in self.articles:
-                for i in range(len(self.articles[art]) - 2):
-                    three_gram = ' '.join(self.articles[art][i],  self.articles[art][i+1], self.articles[art][i+2])
+                for i in range(len(art) - 2):
+                    three_gram = ' '.join(self.art[i],  self.art[i+1], self.art[i+2])
                     if three_gram in list_of_3grams_and_freq:
                         list_of_3grams_and_freq.setdefault(three_gram, 0)
                         list_of_3grams_and_freq[three_gram] += 1          
@@ -52,7 +52,7 @@ class TextStatistics:
             list_of_their_corresponding_freq = []
             
             for art in self.articles:
-                for w in self.articles[art]:
+                for w in art:
                     list_of_words_and_freq.setdefault(w, 0)
                     list_of_words_and_freq[w] += 1 
                     
@@ -68,7 +68,7 @@ class TextStatistics:
         
 
 class Experiment:
-    def __init___(self):
+    def __init__(self):
         pass
       
     def show_results(self):
