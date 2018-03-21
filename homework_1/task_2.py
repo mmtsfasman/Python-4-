@@ -7,7 +7,7 @@ class drink:
         temperature = int
         size_ml = int
         state = ''
-        type_og_milk = ''
+        type_of_milk = ''
         
 
         
@@ -23,6 +23,11 @@ class water(drink):
         self.temperature = -10
         self.state = 'ice'
     
+    def say(self):
+        if self.temperature > 0:
+            return 'Your water!'
+        elif self.temperature > 0:
+            return 'Your ice!'
 
 class coffee(drink):
     def __init__(self):
@@ -55,6 +60,10 @@ class milk(drink):
         self.temperature = 70
         self.state = 'frothy'
         
+    def say(self):
+        return "Your milk!"
+        
+        
 class vietnamese(coffee):
     def make_it(self):
         add_1 = milk()
@@ -64,28 +73,35 @@ class vietnamese(coffee):
         self.temperature = (self.temperature + add_1.temperature + add_2.temperature)/3
         self.size_ml += (add_1.size_ml + addd_2.size_ml)    
     
+    def say(self):
+        return "Your Vietnamese!"
     
 
 class latte(coffee):
-     def make_it(self):
+    def make_it(self):
         add = milk.for_latte() 
         self.temperature = 0.5*(self.temperature + add.temperature)
         self.size_ml += add.size_ml
 
+    def say(self):
+        return "Your latte!"   
     
 class espresso(coffee):
-    
+    def say(self):
+        return "Your espresso!"   
     pass
     
     
 
 class americano(coffee):
-     def make_it(self):
+    def make_it(self):
         add = water()
         self.temperature = 0.5*(self.temperature + add.temperature)
         self.size_ml += add.size_ml
+    def say(self):
+        return "Your Americano!"   
+
     
- 
 class barista:
 
     def help_in_ordering(self):
@@ -124,4 +140,5 @@ class barista:
 a = barista()
 drink_you_wanted = a.help_in_ordering()
 if drink_you_wanted != None:
-    print(drink_you_wanted.temperature) #вместо температуры можно набрать любой другой, просто чтобы проверить объект атрибут
+    print(drink_you_wanted.say())
+    #Бариста сообщает о типе напитка
