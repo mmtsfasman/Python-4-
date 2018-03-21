@@ -1,9 +1,15 @@
-class Singleton(type):
-    instance = None
-    def __call__(cls, *args, **kw):
-        if not cls.instance:
-            cls.instance = super(Singleton, cls).__call__(*args,**kw)
-        return cls.instance
+class UniqObject(object):
+    __instance = None
+    
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(UniqObject, cls).__new__(cls)
+        return cls._instance
+    
+    @classmethod
+    def create_object(cls):
+        if not cls.__instance:
+            cls.__instance = UniqObject()
+        return cls.__instance
 
-class UniqObject(metaclass=Singleton):
-    pass
+   
